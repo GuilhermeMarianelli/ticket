@@ -75,8 +75,9 @@ class TicketsController extends Controller
     public function show($slug)
     {
         $ticket = Ticket::whereSlug($slug)->firstOrFail();
+        $comments = $ticket->comments()->get();
 
-        return view('tickets.show',compact('ticket')); 
+        return view('tickets.show',compact('ticket','comments')); 
     }
 
     /**
